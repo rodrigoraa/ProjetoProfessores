@@ -1,4 +1,13 @@
-venv/
-downloads/
+# Python
 __pycache__/
 *.pyc
+venv/
+.env
+
+# Banco de dados e Downloads
+instance/
+downloads/
+
+# IDEs
+.vscode/
+.idea/

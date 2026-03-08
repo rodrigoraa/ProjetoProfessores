@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Downloader EESJV - Professor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="box">
+        <div class="nav">
+            <a href="{{ url_for('main.index') }}">← Voltar ao Portal</a> |
+            <a href="{{ url_for('auth.logout') }}">Sair (Logout)</a>
+        </div>
+
+        <h2>Bem-vindo, Prof. {{ nome }}</h2>
+        <p>Converta e baixe vídeos para usar em suas aulas.</p>
+
+        <form id="dlForm" action="{{ url_for('dl.download_video') }}" method="post">
+            <input type="url" name="url" placeholder="Cole o link do YouTube aqui..." required>
+
+            <div class="format-options">
+                <label><input type="radio" name="format" value="mp4" checked> 🎬 MP4</label>
+                <label><input type="radio" name="format" value="mp3"> 🎵 MP3</label>
+            </div>
+
+            <div id="preview" class="preview-card">
+                <img id="thumb" src="">
+                <h4 id="video-title"></h4>
+                <p id="video-duration"></p>
+            </div>
+
+            <button type="submit">Iniciar Download</button>
+        </form>
+
+        <div id="loader" class="loader"></div>
+        <p id="status" style="display:none; color: var(--text-muted);">Processando arquivo... Isso pode levar alguns
+            minutos.</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/downloader.js') }}"></script>
+</body>
+
+</html>

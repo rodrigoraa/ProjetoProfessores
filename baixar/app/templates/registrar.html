@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - EESJV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+    <div class="auth-card">
+        <h2>Novo Cadastro</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('auth.registrar') }}" method="POST">
+            <label>Nome Completo</label>
+            <input type="text" name="nome" placeholder="Ex: João Silva" required>
+
+            <label>CPF (Apenas números)</label>
+            <input type="text" name="cpf" id="cpf" placeholder="00000000000" required>
+
+            <label>Sua Senha</label>
+            <input type="password" name="senha" placeholder="Crie uma senha forte" required>
+
+            <div class="sec-info">
+                <strong>Validação Escolar:</strong><br>
+                Insira o código de segurança da coordenação para ativar sua conta.
+            </div>
+
+            <input type="text" name="codigo_escola" placeholder="Código de Segurança" required>
+
+            <button type="submit">Finalizar Cadastro</button>
+        </form>
+
+        <div class="footer-links">
+            <a href="{{ url_for('auth.login') }}">Já tem uma conta? Faça Login</a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+
+</html>
