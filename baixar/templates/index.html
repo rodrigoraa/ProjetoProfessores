@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EESJV - Downloader de Vídeos</title>
+    <style>
+        :root {
+            --primary: #cc0000;
+            --dark: #282828;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="url"]:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .options {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 1rem;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #status {
+            margin-top: 1rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎥 EESJV Video</h1>
+        <p>Portal de downloads para professores</p>
+
+        <form id="downloadForm" action="/download" method="post">
+            <input type="url" name="url" id="url" placeholder="Cole o link do YouTube aqui..." required>
+
+            <div class="options">
+                <label><input type="radio" name="format" value="mp4" checked> MP4 (Vídeo)</label>
+                <label><input type="radio" name="format" value="mp3"> MP3 (Áudio)</label>
+            </div>
+
+            <button type="submit" id="btnDownload">Iniciar Download</button>
+        </form>
+
+        <div id="loader" class="loader"></div>
+        <div id="status">Processando vídeo...<br><small>Isso pode levar alguns minutos dependendo do tamanho.</small>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('downloadForm');
+        const btn = document.getElementById('btnDownload');
+        const loader = document.getElementById('loader');
+        const status = document.getElementById('status');
+
+        form.onsubmit = function () {
+            btn.style.display = 'none';
+            loader.style.display = 'block';
+            status.style.display = 'block';
+            // O formulário seguirá com o envio normal para o navegador receber o arquivo
+        };
+    </script>
+</body>
+
+</html>
