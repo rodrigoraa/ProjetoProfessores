@@ -44,9 +44,9 @@ def download_video():
     # Configuração base
     ydl_opts = {
         # 'restrictfilenames': True -> Remove espaços e caracteres especiais do nome do ficheiro
-        'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s_{unique_id}.%(ext)s',
-        'restrictfilenames': True, 
-        'noplaylist': True,
+        "outtmpl": f"{DOWNLOAD_FOLDER}/%(title)s_{unique_id}.%(ext)s",
+        "restrictfilenames": True,
+        "noplaylist": True,
     }
 
     # Se o professor escolher MP3
@@ -101,3 +101,22 @@ def video_info():
             }
     except Exception as e:
         return {"error": str(e)}, 500
+
+
+def limpar_pasta_antiga():
+    agora = time.time()
+    for f in os.listdir(DOWNLOAD_FOLDER):
+        caminho = os.path.join(DOWNLOAD_FOLDER, f)
+        # Se o arquivo tem mais de 1 hora (3600 segundos)
+        if os.stat(caminho).st_mtime < agora - 3600:
+            try:
+                os.remove(caminho)
+            except:
+                pass
+
+
+@dl_bp.route("/ferramentas")
+@login_required
+def ferramentas():
+    limpar_pasta_antiga()  # Limpa o lixo antes de mostrar a página
+    return render_template("downloader.html", nome=current_user.nome)
