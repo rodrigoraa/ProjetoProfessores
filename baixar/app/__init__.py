@@ -12,7 +12,10 @@ def create_app():
 
     # Configurações do Aplicativo
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-    app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
+    #app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
+    app.config["SESSION_COOKIE_SECURE"] = False
+    app.config["SESSION_COOKIE_HTTPONLY"] = True
+    app.config["SESSION_KEY_PREFIX"] = 'eesjv_session:'
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
