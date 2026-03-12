@@ -31,6 +31,8 @@ def create_app():
         return User.query.get(int(user_id))
 
     from .routes.booking import booking_bp
+    from .routes.admin import admin_bp
     app.register_blueprint(booking_bp)
+    app.register_blueprint(admin_bp)
 
     return app

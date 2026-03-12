@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - Agenda</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
+          <div
+            class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white"
+          >
+            <a
+              href="{{ url_for('admin.painel') }}"
+              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+            >
+              <span class="fs-5 d-none d-sm-inline">Painel Admin</span>
+            </a>
+            <ul
+              class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+              id="menu"
+            >
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.painel') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-speedometer2"></i>
+                  <span class="ms-1 d-none d-sm-inline">Início</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.recursos') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-projector"></i>
+                  <span class="ms-1 d-none d-sm-inline">Salas/Máquinas</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.turmas') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-people"></i>
+                  <span class="ms-1 d-none d-sm-inline">Turmas</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.aulas') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-clock"></i>
+                  <span class="ms-1 d-none d-sm-inline">Horários/Aulas</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.professores') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-person-badge"></i>
+                  <span class="ms-1 d-none d-sm-inline">Professores</span>
+                </a>
+              </li>
+              <li class="nav-item w-100">
+                <a
+                  href="{{ url_for('admin.disciplinas') }}"
+                  class="nav-link text-white"
+                >
+                  <i class="bi bi-book"></i>
+                  <span class="ms-1 d-none d-sm-inline">Disciplinas</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="w-100 text-white" />
+            <div class="dropdown pb-4 w-100">
+              <a
+                href="{{ url_for('booking.dashboard') }}"
+                class="d-flex align-items-center text-white text-decoration-none"
+              >
+                <i class="bi bi-arrow-left-circle"></i>
+                <span class="d-none d-sm-inline mx-1">Voltar à Agenda</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col py-3">
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div
+            class="alert alert-{{ category }} alert-dismissible fade show"
+            role="alert"
+          >
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock
+          %}
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

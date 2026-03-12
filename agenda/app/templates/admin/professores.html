@@ -1,0 +1,68 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<h2 class="mb-4">Gerir Professores / Utilizadores</h2>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">Novo Utilizador</div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Nome de Utilizador</label>
+                        <input type="text" name="nome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Palavra-passe</label>
+                        <input type="password" name="senha" class="form-control" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="isAdmin" name="is_admin">
+                        <label class="form-check-label text-danger fw-bold" for="isAdmin">
+                            É Administrador? (Tem acesso a este painel)
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Criar Conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">Utilizadores Registados</div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Privilégios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in professores %}
+                        <tr>
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.nome }}</td>
+                            <td>
+                                {% if p.is_admin %}
+                                    <span class="badge bg-danger">Administrador</span>
+                                {% else %}
+                                    <span class="badge bg-primary">Professor</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">Nenhum professor registado.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

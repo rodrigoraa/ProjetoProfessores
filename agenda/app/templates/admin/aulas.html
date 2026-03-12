@@ -1,0 +1,55 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<h2 class="mb-4">Gerir Horários / Aulas</h2>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-dark text-white">Novo Horário</div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Período</label>
+                        <input type="text" name="nome" class="form-control" placeholder="Ex: 1ª Aula (08:00 - 08:50)" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ordem (Cronológica)</label>
+                        <input type="number" name="ordem" class="form-control" placeholder="Ex: 1" min="1" required>
+                        <small class="text-muted">Isto define a ordem em que a aula aparece na agenda.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Registar Horário</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">Horários Registados</div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ordem</th>
+                            <th>Nome do Período</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in aulas %}
+                        <tr>
+                            <td><span class="badge bg-dark">{{ a.ordem }}</span></td>
+                            <td>{{ a.nome }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="2" class="text-center">Nenhum horário registado.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

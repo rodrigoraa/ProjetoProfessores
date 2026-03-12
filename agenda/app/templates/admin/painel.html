@@ -1,0 +1,32 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<h2 class="mb-4">Visão Geral</h2>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card bg-primary text-white h-100">
+            <div class="card-body">
+                <h5 class="card-title">Professores</h5>
+                <h1 class="display-4">{{ profs }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card bg-success text-white h-100">
+            <div class="card-body">
+                <h5 class="card-title">Salas e Máquinas</h5>
+                <h1 class="display-4">{{ recs }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card bg-warning text-dark h-100">
+            <div class="card-body">
+                <h5 class="card-title">Turmas</h5>
+                <h1 class="display-4">{{ turmas }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
