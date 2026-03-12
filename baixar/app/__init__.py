@@ -11,7 +11,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configurações do Aplicativo
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "chave-temporaria-de-emergencia-123")    
     app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
     app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
