@@ -1,21 +1,19 @@
+# agenda/app/models.py
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from werkzeug.security import check_password_hash
 
 db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
+    # Deve ter os mesmos campos do banco original
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(150), unique=True, nullable=False)
     senha = db.Column(db.String(150), nullable=False)
 
-    def verificar_senha(self, senha):
-        return check_password_hash(self.senha, senha)
-
 class Recurso(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
-    tipo = db.Column(db.String(50)) # Sala, Equipamento, etc.
+    tipo = db.Column(db.String(50))
 
 class Agendamento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -26,4 +24,3 @@ class Agendamento(db.Model):
     turma = db.Column(db.String(50), nullable=False)
     
     recurso = db.relationship('Recurso', backref='agendamentos')
-    professor = db.relationship('User', backref='meus_agendamentos')
