@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from flask import Flask
 from dotenv import load_dotenv
 from .models import db, User
@@ -11,9 +12,9 @@ def create_app():
     app = Flask(__name__)
 
     # Configurações do Aplicativo
-    #app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    app.config["REMEMBER_COOKIE_DURATION"] = timedelta(days=30)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-    #app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
+    app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
     app.config["SESSION_COOKIE_SECURE"] = False
     app.config["SESSION_COOKIE_HTTPONLY"] = True
     app.config["SESSION_KEY_PREFIX"] = 'eesjv_session:'
@@ -22,9 +23,6 @@ def create_app():
 
     # Define o caminho do banco de dados dentro da pasta 'instance'
     basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
-        basedir, "..", "instance", "usuarios.db"
-    )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     # Inicializa o Banco de Dados

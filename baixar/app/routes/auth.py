@@ -17,7 +17,7 @@ def login():
 
         # Verifica o hash da senha de forma segura
         if user and user.verificar_senha(senha):
-            login_user(user)
+            login_user(user, remember=True)
             return redirect(url_for("dl.ferramentas"))
 
         flash("Nome ou Senha incorretos.", "danger")
