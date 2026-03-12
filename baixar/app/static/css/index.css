@@ -41,16 +41,19 @@ header p {
 
 /* Grid de Sistemas */
 .systems-grid {
-    display: flex;           /* Mudamos de grid para flex */
-    flex-direction: column;  /* Alinha os itens em coluna (um embaixo do outro) */
-    align-items: center;     /* Centraliza os botões horizontalmente */
-    gap: 20px;               /* Espaçamento entre os botões */
+    display: grid;
+    /* Cria colunas de no mínimo 280px que se ajustam sozinhas ao espaço da tela */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
     margin-top: 30px;
+    width: 100%;
+    max-width: 1200px; /* Aumentamos a largura máxima para caber mais cards lado a lado */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card {
-    width: 100%;
-    max-width: 400px;
+    width: auto; /* Deixe o Grid controlar a largura */
     background: var(--white);
     padding: 30px;
     border-radius: 20px;
@@ -62,6 +65,7 @@ header p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura na linha */
 }
 
 .card:hover {

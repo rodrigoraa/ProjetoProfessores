@@ -65,7 +65,8 @@ def process_download(task_id, url, format_type):
             "progress_hooks": [get_progress_hook(task_id)],
             "quiet": True,
             "no_warnings": True,
-            "ffmpeg_location": "/usr/bin/ffmpeg",  # Adicione esta linha exata
+            "ffmpeg_location": "/usr/bin/ffmpeg",
+            "noplaylist": True,  # ADICIONADO: Garante que apenas 1 vídeo seja processado
         }
 
         if format_type == "mp3":
@@ -107,14 +108,24 @@ def process_download(task_id, url, format_type):
 def start_download():
     """Inicia a tarefa em segundo plano e devolve um ID"""
     data = request.json
-    url = data.get("url")
+    url = data.get("url", "")
     format_type = data.get("format", "mp4")
 
     if not url:
         return jsonify({"error": "URL inválida"}), 400
 
+    # BLOQUEIO DE PLAYLIST: Verifica se o link contém indicadores de lista
+    if "playlist" in url.lower() or "&list=" in url.lower():
+        return (
+            jsonify(
+                {
+                    "error": "O download de playlists não é permitido. Por favor, cole o link de um vídeo individual."
+                }
+            ),
+            400,
+        )
+
     task_id = str(uuid.uuid4())[:8]
-    # Inicia a thread para não bloquear a resposta
     threading.Thread(target=process_download, args=(task_id, url, format_type)).start()
 
     return jsonify({"task_id": task_id})
