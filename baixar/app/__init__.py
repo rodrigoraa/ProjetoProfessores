@@ -11,6 +11,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configurações do Aplicativo
+    #app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
     #app.config["SESSION_COOKIE_DOMAIN"] = ".eesjv.com.br"
     app.config["SESSION_COOKIE_SECURE"] = False
