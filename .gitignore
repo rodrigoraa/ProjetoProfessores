@@ -1,0 +1,78 @@
+# =========================
+# Python / Flask
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Ambientes Virtuais
+# =========================
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# Variáveis de Ambiente e Segredos
+# =========================
+.env
+.flaskenv
+
+# =========================
+# Banco de Dados
+# =========================
+*.sqlite
+*.sqlite3
+*.db
+instance/
+
+# =========================
+# Configurações de IDE / Editores
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Arquivos do Sistema Operacional
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Python / Flask
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Ambientes Virtuais
+# =========================
+venv/
+.venv/
+
+# =========================
+# Variáveis de Ambiente e Segredos
+# =========================
+.env
+.flaskenv
+
+# =========================
+# Banco de Dados
+# =========================
+*.sqlite
+*.sqlite3
+*.db
+instance/
+
+# =========================
+# Arquivos de Usuário (Específico do projeto Baixar)
+# =========================
+uploads/
+arquivos/
+media/
+downloads/
