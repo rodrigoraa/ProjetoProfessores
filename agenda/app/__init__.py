@@ -1,9 +1,10 @@
 # agenda/app/__init__.py
 import os
-from flask import Flask
+from flask import Flask, redirect
 from .models import db, User
 from flask_login import LoginManager
 from datetime import timedelta
+
 
 def create_app():
     app = Flask(__name__)
@@ -19,19 +20,25 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(
         basedir, "../../baixar/instance/usuarios.db"
     )
-    
+
     db.init_app(app)
-    
+
     login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
     login_manager.init_app(app)
+
+    # 3. Redirecionamento forçado para o Login do site principal
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        return redirect("http://eesjv.com.br/login")
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    # 4. Registo de Rotas
     from .routes.booking import booking_bp
     from .routes.admin import admin_bp
+
     app.register_blueprint(booking_bp)
     app.register_blueprint(admin_bp)
 
