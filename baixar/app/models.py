@@ -7,9 +7,10 @@ db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    cpf = db.Column(db.String(11), unique=True, nullable=False)
-    senha = db.Column(db.String(255), nullable=False)  # Aumentamos para 255 para o Hash
-    nome = db.Column(db.String(100), nullable=False)
+    nome = db.Column(
+        db.String(100), unique=True, nullable=False
+    )  # Tornou-se unique=True
+    senha = db.Column(db.String(255), nullable=False)
 
     def set_senha(self, senha_plana):
         """Transforma a senha comum em um Hash seguro."""

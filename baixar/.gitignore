@@ -1,13 +1,19 @@
-# Python
-__pycache__/
-*.pyc
-venv/
 .env
 
-# Banco de dados e Downloads
 instance/
+*.db
+*.sqlite3
+
 downloads/
 
-# IDEs
-.vscode/
-.idea/
+venv/
+env/
+.venv/
+env/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+.DS_Store
+Thumbs.db
