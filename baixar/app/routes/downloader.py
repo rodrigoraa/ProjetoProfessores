@@ -135,8 +135,15 @@ def get_file(task_id):
     """Entrega o ficheiro ao utilizador quando concluído"""
     data = progress_data.get(task_id)
     if not data or not data.get("file"):
-        return "Arquivo não encontrado", 404
-    return send_file(data["file"], as_attachment=True)
+        return "Erro: Tarefa não encontrada no sistema.", 404
+
+    file_path = data.get("file")
+
+    if not os.path.exists(file_path):
+        print(f"ERRO: O arquivo deveria estar em {file_path}, mas não foi achado.")
+        return f"Arquivo não encontrado no servidor. Caminho esperado: {file_path}", 404
+
+    return send_file(file_path, as_attachment=True)
 
 
 @dl_bp.route("/video-info", methods=["POST"])
