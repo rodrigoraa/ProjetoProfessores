@@ -62,9 +62,10 @@ def process_download(task_id, url, format_type):
         )
         ydl_opts = {
             "outtmpl": file_path_template,
-            "progress_hooks": [get_progress_hook(task_id)],  # Liga o hook de progresso
+            "progress_hooks": [get_progress_hook(task_id)],
             "quiet": True,
             "no_warnings": True,
+            "ffmpeg_location": "/usr/bin/ffmpeg",  # Adicione esta linha exata
         }
 
         if format_type == "mp3":
@@ -136,6 +137,7 @@ def get_file(task_id):
     if not data or not data.get("file"):
         return "Arquivo não encontrado", 404
     return send_file(data["file"], as_attachment=True)
+
 
 @dl_bp.route("/video-info", methods=["POST"])
 @login_required
