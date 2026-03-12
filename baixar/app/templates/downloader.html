@@ -17,7 +17,7 @@
         <h2>Bem-vindo, Prof. {{ nome }}</h2>
         <p>Converta e baixe vídeos para usar em suas aulas.</p>
 
-        <form id="dlForm" action="{{ url_for('dl.download_video') }}" method="post">
+        <form id="dlForm" action="{{ url_for('dl.start_download') }}" method="post">
             <input type="url" name="url" placeholder="Cole o link do YouTube aqui..." required>
 
             <div class="format-options">
