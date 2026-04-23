@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal EESJV - Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Portal EESJV</h1>
+        <p>Selecione o sistema que deseja acessar</p>
+      </header>
+
+      <div class="systems-grid">
+        <a href="http://meteo.eesjv.com.br" class="card" target="_blank" rel="noopener noreferrer">
+          <span class="icon">🌦️</span>
+          <h3>Sistema Meteorologico</h3>
+          <p>Monitoramento e dados climaticos em tempo real.</p>
+        </a>
+
+        <a href="http://scr.eesjv.com.br" class="card alt" target="_blank" rel="noopener noreferrer">
+          <span class="icon">📊</span>
+          <h3>Sistema da Secretaria</h3>
+          <p>Gestao escolar.</p>
+        </a>
+
+        <a href="http://agenda.eesjv.com.br" class="card alt" target="_blank" rel="noopener noreferrer">
+          <span class="icon">🗓️</span>
+          <h3>Agenda</h3>
+          <p>Sistema de Alocacao de Aulas</p>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
